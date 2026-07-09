@@ -13,3 +13,85 @@ The backend infrastructure of Royal-Estate is robust and efficient, with a custo
 The mongodb backend involves various collections like users, posts, chats, messages, etc which involves( one-one, one-many, many-one and many-to-many ) relationhips which are mangaged by using prisma models and relations which would mean dependable and consistent data and thereby enforces data integrity. This technology stack ensures smooth and reliable data operations.
 
 In summary, Royal-Estate delivers a comprehensive, user-friendly platform for exploring, managing, and communicating about real estate properties. Its advanced search capabilities, detailed property listings, secure authentication, real-time communication, and responsive design all contribute to providing users with a seamless and enjoyable experience in the real estate market.
+
+---
+
+## Getting Started & Running Locally
+
+Follow the steps below to set up and run the project on your local machine.
+
+### Prerequisites
+Make sure you have the following installed:
+* [Node.js](https://nodejs.org/) (which includes npm)
+* [MongoDB](https://www.mongodb.com/) (either a local instance or a free cluster on MongoDB Atlas)
+
+---
+
+### Step-by-Step Setup
+
+#### 1. Clone & Open Project
+Clone the repository and open it in your code editor (such as VS Code):
+```bash
+git clone https://github.com/Shourya-Goel14/ROYAL-ESTATE.git
+cd ROYAL-ESTATE
+```
+
+#### 2. Configure Backend API (`api`)
+1. Navigate to the backend directory and install dependencies:
+   ```bash
+   cd api
+   npm install
+   ```
+2. Create a `.env` file in the `api/` directory with the following variables:
+   ```env
+   DATABASE_URL="mongodb+srv://<username>:<password>@cluster.mongodb.net/databaseName?retryWrites=true&w=majority"
+   JWT_SECRET_KEY="your_secret_key"
+   CLIENT_URL="http://localhost:5173"
+   PORT=8800
+   ```
+3. Generate the Prisma client:
+   ```bash
+   npx prisma generate
+   ```
+4. Sync the schema and indexes with your database:
+   ```bash
+   npx prisma db push
+   ```
+5. Start the backend server:
+   ```bash
+   npm run dev
+   ```
+   The backend API will run on `http://localhost:8800`.
+
+---
+
+#### 3. Configure Socket Server (`socket`)
+1. Open a new terminal, navigate to the `socket/` directory, and install dependencies:
+   ```bash
+   cd socket
+   npm install
+   ```
+2. Start the socket server:
+   ```bash
+   npm run dev
+   ```
+   The socket server will run on `http://localhost:4000`.
+
+---
+
+#### 4. Configure Frontend Client (`client`)
+1. Open a new terminal, navigate to the `client/` directory, and install dependencies:
+   ```bash
+   cd client
+   npm install
+   ```
+2. Open `client/src/lib/apiRequest.js` and ensure the `baseURL` points to your local backend API:
+   ```javascript
+   baseURL: "http://localhost:8800/api"
+   ```
+3. Start the client development server:
+   ```bash
+   npm run dev
+   ```
+   The frontend application will start on `http://localhost:5173`.
+
